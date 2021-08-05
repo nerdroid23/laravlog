@@ -12,7 +12,9 @@ InertiaProgress.init()
 
 createInertiaApp({
   resolve: async (name) => {
-    return (await import(`./Pages/${ name }.vue`)).default
+    const pages = import.meta.glob('./Pages/**/*.vue')
+    return pages[`./Pages/${name}.vue`]().then(module => module.default)
+    // return (await import(`./Pages/${name}.vue`)).default
   },
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
