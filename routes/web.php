@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostsController;
 
-Route::get('', function () {
-    return inertia('Welcome');
-});
+Route::inertia('', 'Welcome');
+
+Route::get('posts', [PostsController::class, 'index']);
