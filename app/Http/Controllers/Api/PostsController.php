@@ -12,27 +12,12 @@ class PostsController
     public function index(): AnonymousResourceCollection
     {
         return PostResource::collection(
-            resource: Post::query()->published()->get()
+            resource: Post::query()->latest()->published()->get()
         );
-    }
-
-    public function store(Request $request)
-    {
-        //
     }
 
     public function show(Post $post): PostResource
     {
         return PostResource::make($post);
-    }
-
-    public function update(Request $request, Post $post)
-    {
-        //
-    }
-
-    public function destroy(Post $post)
-    {
-        //
     }
 }
